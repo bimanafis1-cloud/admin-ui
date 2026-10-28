@@ -1,22 +1,31 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { formatAddress } from "./userData.js";
 
-function UserCard({ name, email, street, city }) {
+function UserCard({ name, email, street, city, ...rest }) {
   const [clicked, setClicked] = useState(false);
 
   return (
-    <article className="rounded-lg bg-white p-6 shadow transition-shadow hover:shadow-md">
-      <h2 className="mb-2 text-xl font-semibold text-gray-800">{name}</h2>
-      <p className="text-gray-600">
-        <span className="font-medium">Email:</span> {email}
+    <article className="rounded-md bg-white p-4 shadow-sm">
+      <h2 className="mb-1 text-sm font-semibold text-gray-800">{name}</h2>
+      <p className="text-xs text-gray-600">
+        <span>Email:</span> {email}
       </p>
-      <p className="text-gray-600">
-        <span className="font-medium">Address:</span> {street}, {city}
+      <p className="text-xs text-gray-600">
+        <span>Address:</span> {formatAddress(street, city)}
       </p>
+      {Object.entries(rest).map(([key, value]) => (
+        <p className="text-xs text-gray-600" key={key}>
+          <span className="font-medium capitalize">{key}:</span> {value}
+        </p>
+      ))}
       <button
-        className={`${clicked ? "bg-special-green" : "bg-gray-01"} mt-4 rounded-md p-2 text-white transition-colors`}
-        onClick={() => setClicked(true)}
+        className={`mt-2 rounded px-2 py-1 text-xs text-white transition-colors ${
+          clicked ? "bg-special-green" : "bg-gray-01"
+        }`}
+        onClick={() => setClicked((wasClicked) => !wasClicked)}
         type="button"
+        aria-pressed={clicked}
       >
         {clicked ? "Tombol sudah diklik" : "Silakan Klik"}
       </button>
