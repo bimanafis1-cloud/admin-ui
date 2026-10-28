@@ -1,9 +1,8 @@
-# Latihan React JSX dan JavaScript ES6
+# Post Cards | React JSX & JavaScript ES6
 
-Aplikasi ini menampilkan kartu pengguna sebagai latihan JSX, fitur ES6, dan
-React Hooks. Data contoh tetap ditampilkan saat aplikasi sedang mengambil data
-dari JSONPlaceholder; jika permintaan gagal, pesan error ditampilkan dan data
-contoh tetap tersedia.
+Aplikasi ini mengambil post dari JSONPlaceholder dan menampilkannya dalam grid
+kartu responsif. Setiap kartu dapat diklik untuk mengubah warna latar secara
+independen; status kartu lain tidak ikut berubah.
 
 ## Menjalankan aplikasi
 
@@ -21,24 +20,19 @@ npm run build
 
 ## Materi yang diterapkan
 
-- **Spread operator** meneruskan properti pengguna ke komponen kartu dengan
-  `<UserCard {...user} />`.
-- **Rest parameter** mengumpulkan bagian alamat di `formatAddress(...parts)`;
-  object rest di `UserCard` menerima properti tambahan.
-- **Object property shorthand** digunakan saat membentuk objek pengguna.
-- **Array methods** (`map`, `filter`, dan `Object.entries`) membentuk daftar
-  kartu, alamat, dan properti tambahan.
-- **Promise dan async/await** digunakan untuk mengambil serta mengolah data
-  pengguna.
-- **Default dan named export** dipakai untuk membagikan data contoh dan fungsi
-  dari `userData.js`.
-- **`useState`** mengelola daftar pengguna, status pemuatan, pesan error, dan
-  status tombol kartu.
-- **`useEffect`** memuat data saat komponen ditampilkan dan membatalkan
-  permintaan ketika komponen dilepas.
+- **Promise, Fetch API, dan async/await** mengambil post melalui `getPosts`.
+- **`useState`** menyimpan data post, status pemuatan, pesan error, dan status
+  klik secara terpisah pada setiap kartu.
+- **`useEffect`** mengambil data saat komponen ditampilkan dan membatalkan
+  permintaan saat komponen dilepas.
+- **Props, spread operator, dan `map`** mengirimkan data tiap post ke
+  `PostCard`.
+- **Event handling dan conditional rendering** mengubah warna kartu antara
+  `bg-white` dan `bg-blue-100`.
+- Kartu dapat diaktifkan dengan klik, Enter, atau Space.
 
 ## Struktur utama
 
-- `src/Exercise.jsx`: daftar pengguna dan pemuatan data dengan Hooks.
-- `src/UserCard.jsx`: komponen kartu, props, dan state tombol.
-- `src/userData.js`: data contoh, fungsi format alamat, dan pengambilan data.
+- `src/Exercise.jsx`: daftar post dan pemuatan data dengan Hooks.
+- `src/PostCard.jsx`: komponen kartu, props, dan interaksi toggle.
+- `src/Services.js`: fungsi Fetch API untuk mengambil post.
